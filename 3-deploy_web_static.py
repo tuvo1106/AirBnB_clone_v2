@@ -56,6 +56,6 @@ def do_deploy(archive_path):
 def deploy():
     """Distribute to all servers"""
     arch_path = do_pack()
-    if not arch_path:
+    if arch_path is None:
         return False
     return do_deploy(arch_path)

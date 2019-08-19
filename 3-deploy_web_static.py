@@ -9,19 +9,20 @@ from datetime import datetime
 # do_deploy = __import__('2-do_deploy_web_static').do_deploy
 
 env.hosts = ['34.73.136.156', '35.196.227.92']
+env.user = 'ubuntu'
+
 n = datetime.now()
 
 
 def do_pack():
     """Packs web_static files into .tgz file"""
-
     file_name = 'versions/web_static_{}{}{}{}{}{}.tgz'\
                 .format(n.year, n.month, n.day, n.hour, n.minute, n.second)
     local('mkdir -p versions')
     command = local("tar -cvzf " + file_name + " ./web_static/")
     if command.succeeded:
-        print("Success.")
         return file_name
+    return None
 
 
 def do_deploy(archive_path):
@@ -51,6 +52,15 @@ def do_deploy(archive_path):
     if f.failed:
         ret_value = False
     g = run('rm -rf /data/web_static/current')
+    if g.failed:
+        ret_value = False
+    h = run('ln -sf /data/web_static/releases/' + arch +
+            '/' + ' /data/web_static/current')
+    if h.failed:
+        ret_value = False
+    if ret_value:
+        print("All tasks succeeded!")
+    return ret_value
 
 
 def deploy():

@@ -3,6 +3,7 @@
 
 apt-get update &&
 apt-get -y install nginx
+ufw allow 'Nginx HTTP'
 mkdir -p /data/
 mkdir -p /data/web_static/
 mkdir -p /data/web_static/releases/

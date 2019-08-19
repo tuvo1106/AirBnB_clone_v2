@@ -641,4 +641,5 @@ amenity_id: b80aec52-d0c9-420a-8471-3254572954b6
 
 ## Authors
 * [__Tu Vo__](https://github.com/tuvo1106)
+* [__Drew Maring__](https://github.com/dmaring)
 * [__Kevin Yook__](https://github.com/yook00627)

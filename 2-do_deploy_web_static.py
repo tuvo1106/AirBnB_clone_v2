@@ -38,7 +38,7 @@ def do_deploy(archive_path):
     if g.failed:
         ret_value = False
     h = run('ln -sf /data/web_static/releases/' + arch +
-            '/' '/data/web_static/current')
+            '/' + ' /data/web_static/current')
     if h.failed:
         ret_value = False
     if ret_value:

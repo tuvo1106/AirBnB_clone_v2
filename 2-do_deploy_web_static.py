@@ -16,7 +16,6 @@ def do_deploy(archive_path):
     if a.failed:
         ret_value = False
     arch = archive_path.replace(".tgz", "").replace("versions/", "")
-    print("archive = " + arch)
     b = run('mkdir -p /data/web_static/releases/' + arch + '/')
     if b.failed:
         ret_value = False

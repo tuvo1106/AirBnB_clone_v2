@@ -14,9 +14,9 @@ def do_clean(number=0):
         if number == 0 or number == 1:
             local('ls -t | tail -n +2 | xargs rm -rfv')
         else:
-            local('ls -t | tail -n +{} | xargs rm -rfv'.format(number))
+            local('ls -t | tail -n +{} | xargs rm -rfv'.format(number + 1))
     with cd('/data/web_static/releases/'):
         if number == 0 or number == 1:
             run('ls -t | tail -n +2 | xargs rm -rfv')
         else:
-            run('ls -t | tail -n +{} | xargs rm -rfv'.format(number))
+            run('ls -t | tail -n +{} | xargs rm -rfv'.format(number + 1))

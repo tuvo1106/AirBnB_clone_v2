@@ -9,14 +9,6 @@ package { 'nginx':
   require => Exec['update']
 }
 
-file_line { 'hbnb_static':
-  ensure  => 'present',
-  path    => '/etc/nginx/sites-available/default',
-  after   => 'server_name _;',
-  line    => 'location /hbnb_static/ { alias /data/web_static/current/;}',
-  require => Package['nginx'],
-}
-
 file { ['/data/', '/data/web_static/', '/data/web_static/releases/', '/data/web_static/releases/test', '/data/web_static/shared']:
    ensure => 'directory',
     owner => 'ubuntu',
@@ -42,6 +34,14 @@ Holberton School
 </html>",
      owner => 'ubuntu',
      group => 'ubuntu',
+}
+
+file_line { 'hbnb_static':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'server_name _;',
+  line    => 'location /hbnb_static/ { alias /data/web_static/current/;}',
+  require => Package['nginx'],
 }
 
 service { 'nginx':

@@ -32,14 +32,14 @@ file { '/data/web_static/current':
 }
 
 file { '/data/web_static/releases/test/index.html':
-  ensure   => 'present',
-   content => '<html>
-	   <head>
-	   </head>
-	   <body>
-	   Holberton School
-	   </body>
-	   </html>',
+    ensure => 'present',
+   content => "<html>
+<head>
+</head>
+<body>
+Holberton School
+</body>
+</html>",
      owner => 'ubuntu',
      group => 'ubuntu',
 }

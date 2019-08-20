@@ -10,13 +10,13 @@ env.user = 'ubuntu'
 def do_clean(number=0):
     number = int(number)
     """Cleans old archives"""
-    with lcd('./versions'):
+    with lcd('versions'):
         if number == 0 or number == 1:
-            r = local('ls -t | tail -n +2 | xargs rm -rfv')
-        elif number == 2:
-            r = local('ls -t | tail -n +3 | xargs rm -rfv')
+            local('ls -t | tail -n +2 | xargs rm -rfv')
+        else:
+            local('ls -t | tail -n +{} | xargs rm -rfv'.format(number))
     with cd('/data/web_static/releases/'):
         if number == 0 or number == 1:
-            r = run('ls -t | tail -n +2 | xargs rm -rfv')
-        elif number == 2:
-            r = run('ls -t | tail -n +3 | xargs rm -rfv')
+            run('ls -t | tail -n +2 | xargs rm -rfv')
+        else:
+            run('ls -t | tail -n +{} | xargs rm -rfv'.format(number))

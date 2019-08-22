@@ -9,29 +9,29 @@ package { 'nginx':
 }
 
 file { ['/data/', '/data/web_static/', '/data/web_static/releases/', '/data/web_static/releases/test', '/data/web_static/shared']:
-   ensure => 'directory',
-    owner => 'ubuntu',
-    group => 'ubuntu',
+  ensure => 'directory',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
 }
 
 file { '/data/web_static/releases/test/index.html':
-   content => "<html>
+  content => "<html>
   <head>
   </head>
   <body>
     Holberton School
   </body>
 </html>",
-     owner => 'ubuntu',
-     group => 'ubuntu',
+    owner => 'ubuntu',
+    group => 'ubuntu',
 }
 
 file { '/data/web_static/current':
   ensure => 'link',
   target => '/data/web_static/releases/test/',
   force  => yes,
-   owner => 'ubuntu',
-   group => 'ubuntu',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
 }
 
 exec { 'sed':

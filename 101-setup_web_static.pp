@@ -1,7 +1,7 @@
 # Prepare web servers
 
 exec { 'update':
-  command => '/usr/bin/apt-get -y update',
+  command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
@@ -15,6 +15,18 @@ file { ['/data/', '/data/web_static/', '/data/web_static/releases/', '/data/web_
     group => 'ubuntu',
 }
 
+file { '/data/web_static/releases/test/index.html':
+   content => "<html>
+   <head>
+   </head>
+   <body>
+     Holberton School
+   </body>
+   </html>",
+     owner => 'ubuntu',
+     group => 'ubuntu',
+}
+
 file { '/data/web_static/current':
   ensure => 'link',
   target => '/data/web_static/releases/test/',
@@ -23,21 +35,7 @@ file { '/data/web_static/current':
    group => 'ubuntu',
 }
 
-file { '/data/web_static/releases/test/index.html':
-    ensure => 'present',
-   content => "<html>
-<head>
-</head>
-<body>
-Holberton School
-</body>
-</html>",
-     owner => 'ubuntu',
-     group => 'ubuntu',
-}
-
 file_line { 'hbnb_static':
-  ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'server_name _;',
   line    => 'location /hbnb_static/ { alias /data/web_static/current/;}',

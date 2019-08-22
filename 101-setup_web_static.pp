@@ -16,12 +16,12 @@ file { ['/data/', '/data/web_static/', '/data/web_static/releases/', '/data/web_
 
 file { '/data/web_static/releases/test/index.html':
    content => "<html>
-   <head>
-   </head>
-   <body>
-     Holberton School
-   </body>
-   </html>",
+  <head>
+  </head>
+  <body>
+    Holberton School
+  </body>
+</html>",
      owner => 'ubuntu',
      group => 'ubuntu',
 }

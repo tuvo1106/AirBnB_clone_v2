@@ -36,7 +36,7 @@ file { '/data/web_static/current':
 }
 
 exec { 'config':
-  command => '/usr/bin/env sed -i "/server_name _;/a location /hbnb_static/ { alias /data/web_static/current/;}" /etc/nginx/sites-available/default'
+  command => "/usr/bin/env sed -i '/listen 80 default_server/a location /hbnb_static/ { alias /data/web_static/current/;}' /etc/nginx/sites-available/default"
 }
 
 service { 'nginx':

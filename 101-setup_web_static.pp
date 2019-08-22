@@ -35,13 +35,6 @@ file { '/data/web_static/current':
    group => 'ubuntu',
 }
 
-file_line { 'hbnb_static':
-  path    => '/etc/nginx/sites-available/default',
-  after   => 'server_name _;',
-  line    => 'location /hbnb_static/ { alias /data/web_static/current/;}',
-  require => Package['nginx'],
-}
-
 service { 'nginx':
   ensure  => running,
   require => Package['nginx'],

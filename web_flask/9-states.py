@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+
+"""
+Write a script that starts a Flask web application
+"""
+
+from flask import Flask, render_template
+from models import storage
+
+app = Flask(__name__)
+
+
+@app.teardown_appcontext
+def close(self):
+    """Closes current app"""
+    storage.close()
+
+
+@app.route('/states', strict_slashes=False)
+def state_list():
+    """Returns states list"""
+    states = storage.all('State').values()
+    return render_template('7-states_list.html', states=states)
+
+
+@app.route('/states/<id>', strict_slashes=False)
+def state_id(id):
+    """Returns state by id"""
+    _id = "State." + id
+    states = storage.all('State')
+    if hasattr(states, _id):
+        state = states[_id]
+    else:
+        state = None
+    return render_template('9-states.html', state=state)
+
+
+app.run(host="0.0.0.0", port="5000")

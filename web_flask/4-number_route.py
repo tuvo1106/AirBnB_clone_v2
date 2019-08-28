@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+
+"""
+Write a script that starts a Flask web application
+"""
+
+from flask import Flask
+app = Flask(__name__)
+
+
+@app.route('/', strict_slashes=False)
+def hello():
+    """Returns 'Hello HBNB@'"""
+    return 'Hello HBNB!'
+
+
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
+    """Returns 'HBNB'"""
+    return 'HBNB'
+
+
+@app.route('/c/<var>', strict_slashes=False)
+def c(var):
+    """Returns 'c/<var>'"""
+    return 'C %s' % var.replace('_', ' ')
+
+
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python(text="is cool"):
+    """Returns 'python/<var>'"""
+    return 'Python %s' % text.replace('_', ' ')
+
+
+@app.route('/number/<int:n>')
+def num(n):
+    """Returns '/number/n'"""
+    return '%d is a number' % n
+
+
+app.run(host="0.0.0.0", port="5000")

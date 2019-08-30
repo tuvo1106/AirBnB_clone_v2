@@ -6,6 +6,7 @@ Write a script that starts a Flask web application
 
 from flask import Flask, render_template
 from models import storage
+from models.state import State
 
 app = Flask(__name__)
 
@@ -19,7 +20,7 @@ def close(self):
 @app.route('/cities_by_states', strict_slashes=False)
 def state_id():
     """Returns states and cities"""
-    states = storage.all('State').values()
+    states = storage.all(State).values()
     return render_template('8-cities_by_states.html', states=states)
 
 

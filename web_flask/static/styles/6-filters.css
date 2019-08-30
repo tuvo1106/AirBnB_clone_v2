@@ -58,15 +58,15 @@ button:hover {
     background: #FAFAFA;
     padding-bottom: 25px;
     overflow: scroll;
+    height: fit-content;
     max-height: 300px;
 }
 .amenities .popover {
-    padding: 20px 0;
     margin-left: -5px;
-    margin-top: 1%;
+    margin-top: 7%;
 }
 .locations .popover {
-    margin-top: 1%;
+    margin-top: 7%;
 }
 .popover ul {
     list-style-type: none;
@@ -74,4 +74,9 @@ button:hover {
 .amenities:hover .popover,
 .locations:hover .popover {
     visibility: visible;
+}
+
+.amenities li,
+.locations li {
+    margin: 8px 0;
 }

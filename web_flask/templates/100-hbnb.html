@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css">
     <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css">
     <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css">
+    <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css">
     <link rel="icon" href="images/icon.png" />
     <title>HBnB</title>
   </head>
@@ -47,57 +48,27 @@
       </section>
       <section class="places">
 	<h1>Places</h1>
+	{% for p in places|sort(attribute='name') %}
 	<article>
 	  <div class="title_box">
-	    <h2>My Home</h2>
-	    <div class="price_by_night">$129</div>
+		  <h2>{{p.name}}</h2>
+		  <div class="price_by_night">${{p.price_by_night}}</div>
 	  </div>
 	  <div class="information">
-	    <div class="max_guest">6 Guests</div>
-            <div class="number_rooms">4 Bedroom</div>
-            <div class="number_bathrooms">2 Bathroom</div>
+		  <div class="max_guest">{{p.max_guest}} Guests</div>
+		  <div class="number_rooms">{{p.number_rooms}} Bedroom</div>
+		  <div class="number_bathrooms">{{p.number_bathrooms}} Bathroom</div>
 	  </div>
 	  <div class="user">
-            <b>Owner:</b> Kevin Yook
+		  <b>Owner:</b> {{ table[p.user_id] }}
           </div>
           <div class="description">
-	    This is my personal house in Korea please stay as much as you want if you come to Korea. Also as a complementary there is a tour guide who will help guide you though Seoul me.
+		  <p>
+		  {{p.description|safe}}
+		  </p>
           </div>
 	</article>
-	<article>
-	  <div class="title_box">
-	    <h2>Tiny House</h2>
-	    <div class="price_by_night">$69</div>
-	  </div>
-	  <div class="information">
-	    <div class="max_guest">3 Guests</div>
-            <div class="number_rooms">1 Bedroom</div>
-            <div class="number_bathrooms">1 Bathroom</div>
-	  </div>
-	  <div class="user">
-            <b>Owner:</b> John Doe
-          </div>
-          <div class="description">
-	    This house is John's personal hideout. It contains blood stained walls as a feature to the luxery blury light.
-          </div>
-	</article>
-	<article>
-	  <div class="title_box">
-	    <h2>A Suite</h2>
-	    <div class="price_by_night">$179</div>
-	  </div>
-	  <div class="information">
-	    <div class="max_guest">4 Guests</div>
-            <div class="number_rooms">4 Bedroom</div>
-            <div class="number_bathrooms">4 Bathroom</div>
-	  </div>
-	  <div class="user">
-            <b>Owner:</b> Bob
-          </div>
-          <div class="description">
-	    This house is a fine suite created by designer bob. Each room has it's own bathrooms
-          </div>
-	</article>
+	{% endfor %}
       </section>
     </div>
     <footer>

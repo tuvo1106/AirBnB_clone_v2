@@ -18,22 +18,16 @@ def close(self):
 
 
 @app.route('/states', strict_slashes=False)
-def state_list():
-    """Returns states list"""
-    states = storage.all(State).values()
-    return render_template('7-states_list.html', states=states)
-
-
 @app.route('/states/<id>', strict_slashes=False)
-def state_id(id):
+def state_id(id=None):
     """Returns state by id"""
-    _id = "State." + id
+    state = None
     states = storage.all(State)
-    if hasattr(states, _id):
-        state = states[_id]
-    else:
-        state = None
-    return render_template('9-states.html', state=state)
+    if id:
+        _id = "State." + id
+        if _id in states.keys():
+            state = states[_id]
+    return render_template('9-states.html', **locals())
 
 
 if __name__ == '__main__':
